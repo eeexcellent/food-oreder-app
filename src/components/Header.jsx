@@ -1,4 +1,5 @@
 import logoImg from "../../public/logo.jpg";
+import CartButton from "./CartButton";
 
 export default function Header() {
   return (
@@ -8,7 +9,7 @@ export default function Header() {
         <h1>ReactFood</h1>
       </div>
 
-      <button className="text-button">Cart</button>
+      <CartButton />
     </div>
   );
 }
