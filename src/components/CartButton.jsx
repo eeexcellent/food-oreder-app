@@ -1,11 +1,13 @@
 import { use } from "react";
 import CartContext from "../store/CartContext";
+import UserProgressContext from "../store/UserProgressContext";
 
 export default function CartButton() {
   const { items } = use(CartContext);
+  const { showCart } = use(UserProgressContext);
 
   return (
-    <button className="text-button">
+    <button onClick={showCart} className="text-button">
       Cart {items.length > 0 ? `(${items.length})` : null}
     </button>
   );

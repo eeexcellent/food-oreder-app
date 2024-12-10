@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import Cart from "./components/Cart.jsx";
 import Header from "./components/Header.jsx";
 import Menu from "./components/Menu.jsx";
 import { fetchMeals } from "./http.js";
 import { CartContextProvider } from "./store/CartContext.jsx";
+import { UserProgressContextProvider } from "./store/UserProgressContext.jsx";
 
 function App() {
   const [meals, setMeals] = useState([]);
@@ -29,14 +31,17 @@ function App() {
   }, []);
 
   return (
-    <CartContextProvider>
-      <Header />
-      <Menu
-        isLoading={isFetching}
-        loadingText="Preparing the menu..."
-        meals={meals}
-      />
-    </CartContextProvider>
+    <UserProgressContextProvider>
+      <CartContextProvider>
+        <Cart />
+        <Header />
+        <Menu
+          isLoading={isFetching}
+          loadingText="Preparing the menu..."
+          meals={meals}
+        />
+      </CartContextProvider>
+    </UserProgressContextProvider>
   );
 }
 

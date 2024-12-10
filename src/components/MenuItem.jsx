@@ -4,7 +4,6 @@ import CartContext from "../store/CartContext";
 export default function MenuItem({ item }) {
   const { items, addItem } = use(CartContext);
 
-  console.log(items);
   return (
     <li className="meal-item">
       <article>
