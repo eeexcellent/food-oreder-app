@@ -1,8 +1,8 @@
-import { use } from "react";
+import { useContext } from "react";
 import CartContext from "../store/CartContext";
 
 export default function MenuItem({ item }) {
-  const { items, addItem } = use(CartContext);
+  const { items, addItem } = useContext(CartContext);
 
   return (
     <li className="meal-item">

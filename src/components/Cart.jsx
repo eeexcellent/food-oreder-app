@@ -1,10 +1,10 @@
 import Modal from "./Modal.jsx";
 
-import { use } from "react";
+import { useContext } from "react";
 import UserProgressContext from "../store/UserProgressContext";
 
 export default function Cart() {
-  const userProgressCtx = use(UserProgressContext);
+  const userProgressCtx = useContext(UserProgressContext);
 
   function handleCloseCart() {
     userProgressCtx.hideCart();
