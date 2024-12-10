@@ -1,6 +1,6 @@
-import MealItem from "./MealItem";
+import MenuItem from "./MenuItem";
 
-export default function Menu({ isLoading, loadingText, meals, onAdd }) {
+export default function Menu({ isLoading, loadingText, meals }) {
   if (isLoading) {
     return <h1>{loadingText}</h1>;
   }
@@ -8,7 +8,7 @@ export default function Menu({ isLoading, loadingText, meals, onAdd }) {
   return (
     <div id="meals">
       {meals.map((meal) => (
-        <MealItem key={meal.id} meal={meal} />
+        <MenuItem key={meal.id} item={meal} />
       ))}
     </div>
   );

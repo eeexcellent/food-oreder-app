@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header.jsx";
 import Menu from "./components/Menu.jsx";
 import { fetchMeals } from "./http.js";
+import { CartContextProvider } from "./store/CartContext.jsx";
 
 function App() {
   const [meals, setMeals] = useState([]);
@@ -28,15 +29,14 @@ function App() {
   }, []);
 
   return (
-    <>
+    <CartContextProvider>
       <Header />
       <Menu
         isLoading={isFetching}
         loadingText="Preparing the menu..."
         meals={meals}
-        onAdd={null} // Todo
       />
-    </>
+    </CartContextProvider>
   );
 }
 
