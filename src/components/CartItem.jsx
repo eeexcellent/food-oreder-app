@@ -1,13 +1,9 @@
 import { useContext } from "react";
 import CartContext from "../store/CartContext";
+import { priceFormatter } from "../utils/priceFormatter";
 
 export default function CartItem({ name, quantity, price, onAdd, onRemove }) {
   const cartCtx = useContext(CartContext);
-
-  const priceFormatter = new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "USD",
-  });
 
   return (
     <li className="cart-item">

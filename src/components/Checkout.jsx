@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import CartContext from "../store/CartContext";
 import UserProgressContext from "../store/UserProgressContext";
+import { priceFormatter } from "../utils/priceFormatter";
 import Input from "./Input";
 import Modal from "./Modal";
 
@@ -13,11 +14,6 @@ export default function Checkout() {
     0
   );
 
-  const priceFormatter = new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "USD",
-  });
-
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -27,7 +23,6 @@ export default function Checkout() {
     console.log(enteredData);
 
     // sending HTTP Request...
-    
   }
 
   return (
@@ -47,7 +42,12 @@ export default function Checkout() {
           <Input id="postal-code" label="Postal Code" type="text" required />
         </div>
         <p className="modal-actions">
-          <button onClick={userProgressCtx.hideCheckout} className="text-button">Close</button>
+          <button
+            onClick={userProgressCtx.hideCheckout}
+            className="text-button"
+          >
+            Close
+          </button>
           <button className="button">Submit Order</button>
         </p>
       </form>

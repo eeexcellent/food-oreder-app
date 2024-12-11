@@ -1,6 +1,7 @@
 import Modal from "./Modal.jsx";
 
 import { useContext } from "react";
+import { priceFormatter } from "../utils/priceFormatter.js";
 import CartContext from "../store/CartContext.jsx";
 import UserProgressContext from "../store/UserProgressContext";
 import CartItem from "./CartItem.jsx";
@@ -13,11 +14,6 @@ export default function Cart() {
     (totalPrice, item) => item.quantity * item.price + totalPrice,
     0
   );
-
-  const priceFormatter = new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "USD",
-  });
 
   function handleCloseCart() {
     userProgressCtx.hideCart();
