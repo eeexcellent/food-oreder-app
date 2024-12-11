@@ -251,6 +251,28 @@ h1 {
   background-color: rgba(0, 0, 0, 0.55);
 }
 
+.error {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background-color: rgb(98, 24, 24);
+  border: #402a2a 10px solid;
+  border-radius: 25px;
+  padding: 15px 50px;
+  max-width: 500px;
+}
+
+.error h2 {
+  margin-bottom: 15px;
+}
+
+.error h3 {
+  margin-top: 0;
+  font-style: italic;
+  color: #939392;
+}
+
 @keyframes fade-slide-up {
   from {
     opacity: 0;
