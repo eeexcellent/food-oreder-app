@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Cart from "./components/Cart.jsx";
+import Checkout from "./components/Checkout.jsx";
 import Header from "./components/Header.jsx";
 import Menu from "./components/Menu.jsx";
 import { fetchMeals } from "./http.js";
@@ -40,6 +41,7 @@ function App() {
           loadingText="Preparing the menu..."
           meals={meals}
         />
+        <Checkout />
       </CartContextProvider>
     </UserProgressContextProvider>
   );
