@@ -1,49 +1,36 @@
-import { useEffect, useState } from "react";
-import { fetchMeals } from "../http.js";
+import useHttp from "../hooks/useHttp.js";
 
 import Error from "./Error.jsx";
 import MenuItem from "./MenuItem";
 
+const requestUrl = "http://localhost:3000/meals";
+const requestConfig = {};
+
 export default function Menu() {
-  const [meals, setMeals] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
-  const [error, setError] = useState();
+  const {
+    data: meals,
+    isLoading,
+    error,
+  } = useHttp(requestUrl, requestConfig, []);
 
-  useEffect(() => {
-    async function fetchMealsAsync() {
-      setIsFetching(true);
+  if (isLoading) {
+    return <h2>Preparing the menu...</h2>;
+  }
 
-      try {
-        const meals = await fetchMeals();
-        setMeals(meals);
-      } catch (error) {
-        setError({
-          message: error.message || "Failed to fetch meals from menu.",
-        });
-      }
-
-      setIsFetching(false);
-    }
-
-    fetchMealsAsync();
-  }, []);
-
-  if (isFetching) {
+  if (error) {
     return (
-      <div id="meals">
-        <h2>Preparing the menu...</h2>
-      </div>
+      <Error
+        error={error}
+        description="Failed to fetch meals. Please try again later."
+      />
     );
   }
 
-  console.log(error, isFetching);
-
   return (
-    <div id="meals">
-      {error && <Error error={error} description="Please try again later." />}
+    <ul id="meals">
       {meals.map((meal) => (
         <MenuItem key={meal.id} item={meal} />
       ))}
-    </div>
+    </ul>
   );
 }
