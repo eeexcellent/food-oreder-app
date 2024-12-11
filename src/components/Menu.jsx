@@ -14,7 +14,7 @@ export default function Menu() {
   } = useHttp(requestUrl, requestConfig, []);
 
   if (isLoading) {
-    return <h2>Preparing the menu...</h2>;
+    return <h2 className="text-center">Preparing the menu...</h2>;
   }
 
   if (error) {
