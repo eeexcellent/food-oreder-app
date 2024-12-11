@@ -121,6 +121,7 @@ h1 {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+  user-select: none;
 }
 
 .modal-actions .text-button {
@@ -156,6 +157,7 @@ h1 {
   display: flex;
   gap: 1rem;
   align-items: center;
+  user-select: none;
 }
 
 .cart-item-actions button {
