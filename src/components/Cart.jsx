@@ -1,14 +1,16 @@
 import Modal from "./Modal.jsx";
 
-import { useContext } from "react";
-import { priceFormatter } from "../utils/priceFormatter.js";
+import { useContext, useState } from "react";
 import CartContext from "../store/CartContext.jsx";
 import UserProgressContext from "../store/UserProgressContext";
+import { priceFormatter } from "../utils/priceFormatter.js";
 import CartItem from "./CartItem.jsx";
 
 export default function Cart() {
   const userProgressCtx = useContext(UserProgressContext);
   const cartCtx = useContext(CartContext);
+
+  const [infoAnimate, setInfoAnimate] = useState(false);
 
   const cartTotal = cartCtx.items.reduce(
     (totalPrice, item) => item.quantity * item.price + totalPrice,
@@ -20,7 +22,12 @@ export default function Cart() {
   }
 
   function handleOpenCheckout() {
-    userProgressCtx.showCheckout();
+    if (cartCtx.items.length) {
+      userProgressCtx.showCheckout();
+    } else {
+      setInfoAnimate(true);
+      setTimeout(() => setInfoAnimate(false), 300);
+    }
   }
 
   return (
@@ -30,7 +37,9 @@ export default function Cart() {
       onClose={userProgressCtx.progress === "cart" ? handleCloseCart : null}
     >
       <h2>Your Cart</h2>
-      {cartTotal === 0 && <p>Your Cart is empty.</p>}
+      {cartTotal === 0 && (
+        <p className={infoAnimate ? "paragraph animate-bg" : "paragraph"}>Your Cart is empty.</p>
+      )}
       {cartTotal > 0 && (
         <>
           <ul>

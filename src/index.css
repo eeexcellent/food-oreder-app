@@ -277,6 +277,38 @@ h1 {
   color: #939392;
 }
 
+@keyframes backgroundGrow {
+  100% {
+    transform: scale(1);
+    transform-origin: center;
+  }
+}
+
+.paragraph {
+  display: inline;
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.paragraph::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: #d4c2a8;
+  border-radius: 5px;
+  transform: scale(0);
+  transform-origin: center;
+}
+
+.animate-bg::before {
+  animation: backgroundGrow 0.3s ;
+}
+
 @keyframes fade-slide-up {
   from {
     opacity: 0;
